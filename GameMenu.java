@@ -137,18 +137,36 @@ public class GameMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        PlayerName newFrame = new PlayerName();
+        newFrame.setVisible(true);
+        newFrame.setLocationRelativeTo(null);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        LoadGame  loadGameFrame = new LoadGame();
+        loadGameFrame.setVisible(true);
+        loadGameFrame.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Settings settingFrame = new Settings();
+        settingFrame.setVisible(true);
+        settingFrame.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Rankings rankingFrame = new Rankings();
+        rankingFrame.setVisible(true);
+        rankingFrame.setLocationRelativeTo(null);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
