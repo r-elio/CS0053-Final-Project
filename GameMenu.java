@@ -1,3 +1,6 @@
+import javax.swing.JOptionPane;
+import java.awt.event.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,6 +29,8 @@ public class GameMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setTitle("Apophenia");
+
         label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -38,6 +43,12 @@ public class GameMenu extends javax.swing.JFrame {
         label1.setText("Game Menu");
 
         jButton1.setText("New Game");
+        
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Load Game");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +119,25 @@ public class GameMenu extends javax.swing.JFrame {
         );
 
         pack();
+
+
+        setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
+
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent evt){
+                int response = JOptionPane.showConfirmDialog(rootPane, "Do you want to exit the program?", "Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION){
+                    dispose();
+                    System.exit(0);
+                }
+            }
+        });
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -124,6 +153,13 @@ public class GameMenu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        if (evt.getSource() == jButton5){
+            int response = JOptionPane.showConfirmDialog(rootPane, "Do you want to exit the program?", "Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION){
+                dispose();
+                System.exit(0);
+            }
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -155,8 +191,11 @@ public class GameMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new GameMenu().setVisible(true);
+                GameMenu gameMenu = new GameMenu();
+                gameMenu.setVisible(true);
+                gameMenu.setLocationRelativeTo(null);
             }
         });
     }
