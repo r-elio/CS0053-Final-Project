@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FinalProjectPT;
 
 /**
  *
@@ -115,6 +114,7 @@ public class Difficulty extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                new Difficulty().setLocationRelativeTo(null);
                 new Difficulty().setVisible(true);
             }
         });
