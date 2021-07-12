@@ -55,7 +55,8 @@ public class AccessDB {
 	private static boolean isGameTableExist(Connection conn) throws SQLException {
 		try {
 			Statement stment = conn.createStatement();
-			stment.executeUpdate("SELECT * FROM GAME");
+			stment.execute("SELECT * FROM GAME");
+            stment.close();
 
 		} catch (SQLException e){
             String sqlExption = e.getSQLState();
