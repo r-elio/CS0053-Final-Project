@@ -1,5 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javafxapplication1;
+
 import javax.swing.JOptionPane;
 import java.awt.event.*;
+import java.util.HashSet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,8 +37,6 @@ public class GameMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setTitle("Apophenia");
-
         label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -38,12 +44,11 @@ public class GameMenu extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         label1.setText("Game Menu");
 
         jButton1.setText("New Game");
-        
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -119,44 +124,32 @@ public class GameMenu extends javax.swing.JFrame {
         );
 
         pack();
-
-        setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
-
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosing(WindowEvent evt){
-                int response = JOptionPane.showConfirmDialog(rootPane, "Do you want to exit the program?", "Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (response == JOptionPane.YES_OPTION){
-                    dispose();
-                    System.exit(0);
-                }
-            }
-        });
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                PlayerName playerName = new PlayerName();
-                playerName.setVisible(true);
-                playerName.setLocationRelativeTo(null);
-                dispose();
-            }
-        });
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        LoadGame  loadGameFrame = new LoadGame();
+        loadGameFrame.setVisible(true);
+        loadGameFrame.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Settings settingFrame = new Settings();
+        settingFrame.setVisible(true);
+        settingFrame.setLocationRelativeTo(null);
+        this.dispose();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Rankings rankingFrame = new Rankings();
+        rankingFrame.setVisible(true);
+        rankingFrame.setLocationRelativeTo(null);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -169,6 +162,17 @@ public class GameMenu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        PlayerName newFrame = new PlayerName();
+        newFrame.setVisible(true);
+        newFrame.setLocationRelativeTo(null);
+        
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
