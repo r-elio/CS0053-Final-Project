@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */package javafxapplication1;
 
 /**
  *
@@ -46,12 +46,17 @@ public class Rankings extends javax.swing.JFrame {
         label4.setText("Name 2");
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rajan\\Downloads\\FinalProjectPT\\1.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FinalProjectPT/1.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\rajan\\Downloads\\FinalProjectPT\\2.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FinalProjectPT/2.png"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\rajan\\Downloads\\FinalProjectPT\\3.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FinalProjectPT/3.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +77,7 @@ public class Rankings extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(3, 3, 3)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,6 +119,15 @@ public class Rankings extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        GameMenu gameMenuFrame = new GameMenu();
+        gameMenuFrame.setVisible(true);
+        gameMenuFrame.setLocationRelativeTo(null);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

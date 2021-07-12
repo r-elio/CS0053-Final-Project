@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */package javafxapplication1;
 
 /**
  *
@@ -37,6 +37,11 @@ public class LoadGame extends javax.swing.JFrame {
         label1.setText("Saved Files");
 
         button4.setLabel("Back");
+        button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button4ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Easy Saved Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +96,15 @@ public class LoadGame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
+        // TODO add your handling code here:
+        GameMenu gameMenuFrame = new GameMenu();
+        gameMenuFrame.setVisible(true);
+        gameMenuFrame.setLocationRelativeTo(null);
+        
+        this.dispose();
+    }//GEN-LAST:event_button4ActionPerformed
 
     /**
      * @param args the command line arguments
