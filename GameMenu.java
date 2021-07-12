@@ -5,6 +5,12 @@ import javax.swing.*;
  * and open the template in the editor.
  */
 
+import javax.swing.JOptionPane;
+import java.awt.event.*;
+import java.util.HashSet;
+import java.lang.Thread;
+
+import java.lang.Thread;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -165,16 +171,17 @@ public class GameMenu extends javax.swing.JFrame {
         PlayerName newFrame = new PlayerName();
         newFrame.setVisible(true);
         newFrame.setLocationRelativeTo(null);
-        
-        
+         
         this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+                       
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -202,11 +209,17 @@ public class GameMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //Play Music
+                Music music = new Music();
+                music.playMusic();
+                //Open Frame
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.setVisible(true);
                 gameMenu.setLocationRelativeTo(null);
             }
         });
+        
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
