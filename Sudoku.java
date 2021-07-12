@@ -1,3 +1,8 @@
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,579 +32,108 @@ public class Sudoku extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        textField1 = new java.awt.TextField();
-        textField2 = new java.awt.TextField();
-        textField3 = new java.awt.TextField();
-        textField4 = new java.awt.TextField();
-        textField5 = new java.awt.TextField();
-        textField6 = new java.awt.TextField();
-        textField7 = new java.awt.TextField();
-        textField8 = new java.awt.TextField();
-        textField9 = new java.awt.TextField();
-        textField10 = new java.awt.TextField();
-        textField11 = new java.awt.TextField();
-        textField12 = new java.awt.TextField();
-        textField13 = new java.awt.TextField();
-        textField14 = new java.awt.TextField();
-        textField15 = new java.awt.TextField();
-        textField16 = new java.awt.TextField();
-        textField17 = new java.awt.TextField();
-        textField18 = new java.awt.TextField();
-        textField19 = new java.awt.TextField();
-        textField20 = new java.awt.TextField();
-        textField21 = new java.awt.TextField();
-        textField22 = new java.awt.TextField();
-        textField23 = new java.awt.TextField();
-        textField24 = new java.awt.TextField();
-        textField25 = new java.awt.TextField();
-        textField26 = new java.awt.TextField();
-        textField27 = new java.awt.TextField();
-        textField28 = new java.awt.TextField();
-        textField29 = new java.awt.TextField();
-        textField30 = new java.awt.TextField();
-        textField31 = new java.awt.TextField();
-        textField32 = new java.awt.TextField();
-        textField33 = new java.awt.TextField();
-        textField34 = new java.awt.TextField();
-        textField35 = new java.awt.TextField();
-        textField36 = new java.awt.TextField();
-        textField37 = new java.awt.TextField();
-        textField38 = new java.awt.TextField();
-        textField39 = new java.awt.TextField();
-        textField40 = new java.awt.TextField();
-        textField41 = new java.awt.TextField();
-        textField42 = new java.awt.TextField();
-        textField43 = new java.awt.TextField();
-        textField44 = new java.awt.TextField();
-        textField45 = new java.awt.TextField();
-        textField46 = new java.awt.TextField();
-        textField47 = new java.awt.TextField();
-        textField48 = new java.awt.TextField();
-        textField49 = new java.awt.TextField();
-        textField50 = new java.awt.TextField();
-        textField51 = new java.awt.TextField();
-        textField52 = new java.awt.TextField();
-        textField53 = new java.awt.TextField();
-        textField54 = new java.awt.TextField();
-        textField55 = new java.awt.TextField();
-        textField56 = new java.awt.TextField();
-        textField57 = new java.awt.TextField();
-        textField58 = new java.awt.TextField();
-        textField59 = new java.awt.TextField();
-        textField60 = new java.awt.TextField();
-        textField61 = new java.awt.TextField();
-        textField62 = new java.awt.TextField();
-        textField63 = new java.awt.TextField();
-        textField64 = new java.awt.TextField();
-        textField65 = new java.awt.TextField();
-        textField66 = new java.awt.TextField();
-        textField67 = new java.awt.TextField();
-        textField68 = new java.awt.TextField();
-        textField69 = new java.awt.TextField();
-        textField70 = new java.awt.TextField();
-        textField71 = new java.awt.TextField();
-        textField72 = new java.awt.TextField();
-        textField73 = new java.awt.TextField();
-        textField74 = new java.awt.TextField();
-        textField75 = new java.awt.TextField();
-        textField76 = new java.awt.TextField();
-        textField77 = new java.awt.TextField();
-        textField78 = new java.awt.TextField();
-        textField79 = new java.awt.TextField();
-        textField80 = new java.awt.TextField();
-        textField81 = new java.awt.TextField();
+        textField1 = new java.awt.TextField("1");
+        textField2 = new java.awt.TextField("2");
+        textField3 = new java.awt.TextField("3");
+        textField4 = new java.awt.TextField("4");
+        textField5 = new java.awt.TextField("5");
+        textField6 = new java.awt.TextField("6");
+        textField7 = new java.awt.TextField("7");
+        textField8 = new java.awt.TextField("8");
+        textField9 = new java.awt.TextField("9");
+        textField10 = new java.awt.TextField("10");
+        textField11 = new java.awt.TextField("11");
+        textField12 = new java.awt.TextField("12");
+        textField13 = new java.awt.TextField("13");
+        textField14 = new java.awt.TextField("14");
+        textField15 = new java.awt.TextField("15");
+        textField16 = new java.awt.TextField("16");
+        textField17 = new java.awt.TextField("17");
+        textField18 = new java.awt.TextField("18");
+        textField19 = new java.awt.TextField("19");
+        textField20 = new java.awt.TextField("20");
+        textField21 = new java.awt.TextField("21");
+        textField22 = new java.awt.TextField("22");
+        textField23 = new java.awt.TextField("23");
+        textField24 = new java.awt.TextField("24");
+        textField25 = new java.awt.TextField("25");
+        textField26 = new java.awt.TextField("26");
+        textField27 = new java.awt.TextField("27");
+        textField28 = new java.awt.TextField("28");
+        textField29 = new java.awt.TextField("29");
+        textField30 = new java.awt.TextField("30");
+        textField31 = new java.awt.TextField("31");
+        textField32 = new java.awt.TextField("32");
+        textField33 = new java.awt.TextField("33");
+        textField34 = new java.awt.TextField("34");
+        textField35 = new java.awt.TextField("35");
+        textField36 = new java.awt.TextField("36");
+        textField37 = new java.awt.TextField("37");
+        textField38 = new java.awt.TextField("38");
+        textField39 = new java.awt.TextField("39");
+        textField40 = new java.awt.TextField("40");
+        textField41 = new java.awt.TextField("41");
+        textField42 = new java.awt.TextField("42");
+        textField43 = new java.awt.TextField("43");
+        textField44 = new java.awt.TextField("44");
+        textField45 = new java.awt.TextField("45");
+        textField46 = new java.awt.TextField("46");
+        textField47 = new java.awt.TextField("47");
+        textField48 = new java.awt.TextField("48");
+        textField49 = new java.awt.TextField("49");
+        textField50 = new java.awt.TextField("50");
+        textField51 = new java.awt.TextField("51");
+        textField52 = new java.awt.TextField("52");
+        textField53 = new java.awt.TextField("53");
+        textField54 = new java.awt.TextField("54");
+        textField55 = new java.awt.TextField("55");
+        textField56 = new java.awt.TextField("56");
+        textField57 = new java.awt.TextField("57");
+        textField58 = new java.awt.TextField("58");
+        textField59 = new java.awt.TextField("59");
+        textField60 = new java.awt.TextField("60");
+        textField61 = new java.awt.TextField("61");
+        textField62 = new java.awt.TextField("62");
+        textField63 = new java.awt.TextField("63");
+        textField64 = new java.awt.TextField("64");
+        textField65 = new java.awt.TextField("65");
+        textField66 = new java.awt.TextField("66");
+        textField67 = new java.awt.TextField("67");
+        textField68 = new java.awt.TextField("68");
+        textField69 = new java.awt.TextField("69");
+        textField70 = new java.awt.TextField("70");
+        textField71 = new java.awt.TextField("71");
+        textField72 = new java.awt.TextField("72");
+        textField73 = new java.awt.TextField("73");
+        textField74 = new java.awt.TextField("74");
+        textField75 = new java.awt.TextField("75");
+        textField76 = new java.awt.TextField("76");
+        textField77 = new java.awt.TextField("77");
+        textField78 = new java.awt.TextField("78");
+        textField79 = new java.awt.TextField("79");
+        textField80 = new java.awt.TextField("80");
+        textField81 = new java.awt.TextField("81");
+
+        board = new java.awt.TextField[][]{
+            {textField1,textField10,textField19,    textField28,textField37,textField50,    textField59,textField68,textField77},
+            {textField4,textField11,textField20,    textField29,textField38,textField46,    textField55,textField64,textField73},
+            {textField2,textField12,textField21,    textField30,textField39,textField47,    textField56,textField65,textField74},
+    
+            {textField5,textField13,textField22,    textField31,textField40,textField48,    textField57,textField66,textField75},
+            {textField6,textField14,textField23,    textField32,textField41,textField49,    textField58,textField67,textField76},
+            {textField7,textField15,textField24,    textField33,textField42,textField51,    textField60,textField69,textField78},
+    
+            {textField3,textField16,textField25,    textField34,textField43,textField52,    textField61,textField70,textField79},
+            {textField8,textField17,textField26,    textField35,textField44,textField53,    textField62,textField71,textField80},
+            {textField9,textField18,textField27,    textField36,textField45,textField54,    textField63,textField72,textField81}
+        };
+
         label1 = new java.awt.Label();
         button1 = new java.awt.Button();
         label2 = new java.awt.Label();
         button2 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        textField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
-            }
-        });
-
-        textField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
-            }
-        });
-
-        textField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField3ActionPerformed(evt);
-            }
-        });
-
-        textField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField4ActionPerformed(evt);
-            }
-        });
-
-        textField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField5ActionPerformed(evt);
-            }
-        });
-
-        textField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField6ActionPerformed(evt);
-            }
-        });
-
-        textField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField7ActionPerformed(evt);
-            }
-        });
-
-        textField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField8ActionPerformed(evt);
-            }
-        });
-
-        textField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField9ActionPerformed(evt);
-            }
-        });
-
-        textField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField10ActionPerformed(evt);
-            }
-        });
-
-        textField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField11ActionPerformed(evt);
-            }
-        });
-
-        textField12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField12ActionPerformed(evt);
-            }
-        });
-
-        textField13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField13ActionPerformed(evt);
-            }
-        });
-
-        textField14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField14ActionPerformed(evt);
-            }
-        });
-
-        textField15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField15ActionPerformed(evt);
-            }
-        });
-
-        textField16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField16ActionPerformed(evt);
-            }
-        });
-
-        textField17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField17ActionPerformed(evt);
-            }
-        });
-
-        textField18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField18ActionPerformed(evt);
-            }
-        });
-
-        textField19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField19ActionPerformed(evt);
-            }
-        });
-
-        textField20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField20ActionPerformed(evt);
-            }
-        });
-
-        textField21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField21ActionPerformed(evt);
-            }
-        });
-
-        textField22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField22ActionPerformed(evt);
-            }
-        });
-
-        textField23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField23ActionPerformed(evt);
-            }
-        });
-
-        textField24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField24ActionPerformed(evt);
-            }
-        });
-
-        textField25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField25ActionPerformed(evt);
-            }
-        });
-
-        textField26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField26ActionPerformed(evt);
-            }
-        });
-
-        textField27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField27ActionPerformed(evt);
-            }
-        });
-
-        textField28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField28ActionPerformed(evt);
-            }
-        });
-
-        textField29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField29ActionPerformed(evt);
-            }
-        });
-
-        textField30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField30ActionPerformed(evt);
-            }
-        });
-
-        textField31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField31ActionPerformed(evt);
-            }
-        });
-
-        textField32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField32ActionPerformed(evt);
-            }
-        });
-
-        textField33.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField33ActionPerformed(evt);
-            }
-        });
-
-        textField34.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField34ActionPerformed(evt);
-            }
-        });
-
-        textField35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField35ActionPerformed(evt);
-            }
-        });
-
-        textField36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField36ActionPerformed(evt);
-            }
-        });
-
-        textField37.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField37ActionPerformed(evt);
-            }
-        });
-
-        textField38.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField38ActionPerformed(evt);
-            }
-        });
-
-        textField39.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField39ActionPerformed(evt);
-            }
-        });
-
-        textField40.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField40ActionPerformed(evt);
-            }
-        });
-
-        textField41.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField41ActionPerformed(evt);
-            }
-        });
-
-        textField42.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField42ActionPerformed(evt);
-            }
-        });
-
-        textField43.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField43ActionPerformed(evt);
-            }
-        });
-
-        textField44.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField44ActionPerformed(evt);
-            }
-        });
-
-        textField45.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField45ActionPerformed(evt);
-            }
-        });
-
-        textField46.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField46ActionPerformed(evt);
-            }
-        });
-
-        textField47.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField47ActionPerformed(evt);
-            }
-        });
-
-        textField48.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField48ActionPerformed(evt);
-            }
-        });
-
-        textField49.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField49ActionPerformed(evt);
-            }
-        });
-
-        textField50.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField50ActionPerformed(evt);
-            }
-        });
-
-        textField51.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField51ActionPerformed(evt);
-            }
-        });
-
-        textField52.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField52ActionPerformed(evt);
-            }
-        });
-
-        textField53.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField53ActionPerformed(evt);
-            }
-        });
-
-        textField54.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField54ActionPerformed(evt);
-            }
-        });
-
-        textField55.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField55ActionPerformed(evt);
-            }
-        });
-
-        textField56.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField56ActionPerformed(evt);
-            }
-        });
-
-        textField57.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField57ActionPerformed(evt);
-            }
-        });
-
-        textField58.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField58ActionPerformed(evt);
-            }
-        });
-
-        textField59.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField59ActionPerformed(evt);
-            }
-        });
-
-        textField60.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField60ActionPerformed(evt);
-            }
-        });
-
-        textField61.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField61ActionPerformed(evt);
-            }
-        });
-
-        textField62.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField62ActionPerformed(evt);
-            }
-        });
-
-        textField63.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField63ActionPerformed(evt);
-            }
-        });
-
-        textField64.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField64ActionPerformed(evt);
-            }
-        });
-
-        textField65.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField65ActionPerformed(evt);
-            }
-        });
-
-        textField66.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField66ActionPerformed(evt);
-            }
-        });
-
-        textField67.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField67ActionPerformed(evt);
-            }
-        });
-
-        textField68.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField68ActionPerformed(evt);
-            }
-        });
-
-        textField69.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField69ActionPerformed(evt);
-            }
-        });
-
-        textField70.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField70ActionPerformed(evt);
-            }
-        });
-
-        textField71.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField71ActionPerformed(evt);
-            }
-        });
-
-        textField72.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField72ActionPerformed(evt);
-            }
-        });
-
-        textField73.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField73ActionPerformed(evt);
-            }
-        });
-
-        textField74.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField74ActionPerformed(evt);
-            }
-        });
-
-        textField75.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField75ActionPerformed(evt);
-            }
-        });
-
-        textField76.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField76ActionPerformed(evt);
-            }
-        });
-
-        textField77.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField77ActionPerformed(evt);
-            }
-        });
-
-        textField78.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField78ActionPerformed(evt);
-            }
-        });
-
-        textField79.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField79ActionPerformed(evt);
-            }
-        });
-
-        textField80.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField80ActionPerformed(evt);
-            }
-        });
-
-        textField81.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField81ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -969,6 +503,12 @@ public class Sudoku extends javax.swing.JFrame {
 
         button2.setLabel("Check");
 
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1009,331 +549,75 @@ public class Sudoku extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
+        GameMenu gameMenuFrame = new GameMenu();
+        gameMenuFrame.setVisible(true);
+        gameMenuFrame.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_button1ActionPerformed
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
-
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
-
-    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField3ActionPerformed
-
-    private void textField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField4ActionPerformed
-
-    private void textField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField5ActionPerformed
-
-    private void textField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField6ActionPerformed
-
-    private void textField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField7ActionPerformed
-
-    private void textField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField8ActionPerformed
-
-    private void textField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField9ActionPerformed
-
-    private void textField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField10ActionPerformed
-
-    private void textField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField11ActionPerformed
-
-    private void textField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField12ActionPerformed
-
-    private void textField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField13ActionPerformed
-
-    private void textField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField14ActionPerformed
-
-    private void textField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField15ActionPerformed
-
-    private void textField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField16ActionPerformed
-
-    private void textField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField17ActionPerformed
-
-    private void textField18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField18ActionPerformed
-
-    private void textField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField19ActionPerformed
-
-    private void textField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField20ActionPerformed
-
-    private void textField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField21ActionPerformed
-
-    private void textField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField22ActionPerformed
-
-    private void textField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField23ActionPerformed
-
-    private void textField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField24ActionPerformed
-
-    private void textField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField25ActionPerformed
-
-    private void textField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField26ActionPerformed
-
-    private void textField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField27ActionPerformed
-
-    private void textField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField28ActionPerformed
-
-    private void textField29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField29ActionPerformed
-
-    private void textField30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField30ActionPerformed
-
-    private void textField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField31ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField31ActionPerformed
-
-    private void textField32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField32ActionPerformed
-
-    private void textField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField33ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField33ActionPerformed
-
-    private void textField34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField34ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField34ActionPerformed
-
-    private void textField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField35ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField35ActionPerformed
-
-    private void textField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField36ActionPerformed
-
-    private void textField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField37ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField37ActionPerformed
-
-    private void textField38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField38ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField38ActionPerformed
-
-    private void textField39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField39ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField39ActionPerformed
-
-    private void textField40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField40ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField40ActionPerformed
-
-    private void textField41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField41ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField41ActionPerformed
-
-    private void textField42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField42ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField42ActionPerformed
-
-    private void textField43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField43ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField43ActionPerformed
-
-    private void textField44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField44ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField44ActionPerformed
-
-    private void textField45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField45ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField45ActionPerformed
-
-    private void textField46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField46ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField46ActionPerformed
-
-    private void textField47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField47ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField47ActionPerformed
-
-    private void textField48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField48ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField48ActionPerformed
-
-    private void textField49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField49ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField49ActionPerformed
-
-    private void textField50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField50ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField50ActionPerformed
-
-    private void textField51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField51ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField51ActionPerformed
-
-    private void textField52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField52ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField52ActionPerformed
-
-    private void textField53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField53ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField53ActionPerformed
-
-    private void textField54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField54ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField54ActionPerformed
-
-    private void textField55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField55ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField55ActionPerformed
-
-    private void textField56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField56ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField56ActionPerformed
-
-    private void textField57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField57ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField57ActionPerformed
-
-    private void textField58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField58ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField58ActionPerformed
-
-    private void textField59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField59ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField59ActionPerformed
-
-    private void textField60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField60ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField60ActionPerformed
-
-    private void textField61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField61ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField61ActionPerformed
-
-    private void textField62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField62ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField62ActionPerformed
-
-    private void textField63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField63ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField63ActionPerformed
-
-    private void textField64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField64ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField64ActionPerformed
-
-    private void textField65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField65ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField65ActionPerformed
-
-    private void textField66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField66ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField66ActionPerformed
-
-    private void textField67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField67ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField67ActionPerformed
-
-    private void textField68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField68ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField68ActionPerformed
-
-    private void textField69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField69ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField69ActionPerformed
-
-    private void textField70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField70ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField70ActionPerformed
-
-    private void textField71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField71ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField71ActionPerformed
-
-    private void textField72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField72ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField72ActionPerformed
-
-    private void textField73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField73ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField73ActionPerformed
-
-    private void textField74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField74ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField74ActionPerformed
-
-    private void textField75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField75ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField75ActionPerformed
-
-    private void textField76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField76ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField76ActionPerformed
-
-    private void textField77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField77ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField77ActionPerformed
-
-    private void textField78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField78ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField78ActionPerformed
-
-    private void textField79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField79ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField79ActionPerformed
-
-    private void textField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField80ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField80ActionPerformed
-
-    private void textField81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField81ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField81ActionPerformed
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+        if (!isInputValid(board)){
+            JOptionPane.showMessageDialog(rootPane, "Input must be in a range of 1 - 9.",  "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!isBoardCorrect(board)){
+            JOptionPane.showMessageDialog(rootPane, "Board is not correct.",  "Check", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Sudoku!",  "Check", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private boolean isInputValid(java.awt.TextField[][] board){
+        for (java.awt.TextField[] row : board){
+            for (java.awt.TextField field : row){
+                String text = field.getText();
+                if (text.length() != 1 || !("123456789".contains(text))){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isBoardCorrect(java.awt.TextField[][] board){
+        HashSet<String> hashSet = new HashSet<String>();
+
+        for (java.awt.TextField[] row : board){
+            for (java.awt.TextField field : row){
+                if (!hashSet.add(field.getText())){
+                    return false;
+                }
+            }
+            hashSet.clear();
+        }
+
+        for (int i = 0; i < board.length; ++i){
+            for (int j = 0; j < board[i].length; ++j){
+                if (!hashSet.add(board[j][i].getText())){
+                    return false;
+                }
+            }
+            hashSet.clear();
+        }
+
+        for (int i = 0; i < 3; ++i){
+            for (int j = 0; j < 3; ++j){
+                for (int k = 0; k < 3; ++k){
+                    for (int l = 0; l < 3; ++l){
+                        if (!hashSet.add(board[k + (i * 3)][l + (j * 3)].getText())){
+                            return false;
+                        }
+                    }
+                }
+                hashSet.clear();
+            }
+        }
+
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -1458,4 +742,6 @@ public class Sudoku extends javax.swing.JFrame {
     private java.awt.TextField textField81;
     private java.awt.TextField textField9;
     // End of variables declaration//GEN-END:variables
+
+    private java.awt.TextField [][] board;
 }
