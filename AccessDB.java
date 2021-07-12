@@ -11,7 +11,7 @@ public class AccessDB {
         + "(ID VARCHAR(10) NOT NULL CONSTRAINT STUDENT_PK PRIMARY KEY,"
         + " NAME VARCHAR(20) NOT NULL,"
         + " DIFFICULTY VARCHAR(20),"
-        + " TIME TIMESTAMP NOT NULL,"
+        + " TIME TIME NOT NULL,"
         + " ISDONE BOOLEAN NOT NULL)";
 
 		try {

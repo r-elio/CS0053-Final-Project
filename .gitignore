@@ -27,3 +27,4 @@ gameDB/service.properties
 *.ctrl
 gameDB/log/README_DO_NOT_TOUCH_FILES.txt
 gameDB/README_DO_NOT_TOUCH_FILES.txt
+*.lck
