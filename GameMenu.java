@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
