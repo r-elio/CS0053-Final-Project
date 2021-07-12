@@ -1,5 +1,5 @@
+import java.awt.Font;
 import java.util.HashSet;
-
 import javax.swing.JOptionPane;
 
 /*
@@ -126,6 +126,12 @@ public class Sudoku extends javax.swing.JFrame {
             {textField8,textField17,textField26,    textField35,textField44,textField53,    textField62,textField71,textField80},
             {textField9,textField18,textField27,    textField36,textField45,textField54,    textField63,textField72,textField81}
         };
+
+        for (java.awt.TextField[] row : board){
+            for (java.awt.TextField field : row){
+                field.setFont(new Font("Arial",Font.BOLD,22));
+            }
+        }
 
         label1 = new java.awt.Label();
         button1 = new java.awt.Button();
