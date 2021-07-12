@@ -1,4 +1,3 @@
-import javax.swing.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,11 +5,6 @@ import javax.swing.*;
  */
 
 import javax.swing.JOptionPane;
-import java.awt.event.*;
-import java.util.HashSet;
-import java.lang.Thread;
-
-import java.lang.Thread;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

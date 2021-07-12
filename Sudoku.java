@@ -1,6 +1,14 @@
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.HashSet;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,10 +22,30 @@ import javax.swing.JOptionPane;
  */
 public class Sudoku extends javax.swing.JFrame {
 
+    private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String dbName = "gameDB";
+    private static final String connectionURL = "jdbc:derby:" + dbName + ";create=true";
+    private Connection conn;
+
+    private final String createGameTable = "CREATE TABLE GAME "
+    + "(ID INT GENERATED ALWAYS AS IDENTITY NOT NULL CONSTRAINT ID_PK PRIMARY KEY,"
+    + " NAME VARCHAR(20) NOT NULL,"
+    + " DIFFICULTY VARCHAR(20) NOT NULL,"
+    + " TIME TIME NOT NULL,"
+    + " ISDONE BOOLEAN NOT NULL)";
+
+    private String playerName;
+    private String difficulty;
+    private String time;
+    private String isDone;
+
     /**
      * Creates new form Sudoku
      */
-    public Sudoku() {
+    public Sudoku(String playerName, String difficulty, String time) {
+        this.playerName = playerName;
+        this.difficulty = difficulty;
+        this.time = time;
         initComponents();
     }
 
@@ -29,7 +57,7 @@ public class Sudoku extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        setTitle(difficulty);
         jPanel1 = new javax.swing.JPanel();
         textField1 = new java.awt.TextField("5");
         textField2 = new java.awt.TextField("1");
@@ -495,6 +523,20 @@ public class Sudoku extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        try {
+            conn = DriverManager.getConnection(connectionURL);
+            System.out.println("CONNECTED TO DATABASE: " + dbName);
+            Statement stment = conn.createStatement();
+            if (!isGameTableExist(conn)){
+                System.out.println("CREATING GAME TABLE...");
+                stment.execute(createGameTable);
+            }
+            stment.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
+        }
+
         label1.setText("Timer");
 
         button1.setLabel("Back");
@@ -504,7 +546,15 @@ public class Sudoku extends javax.swing.JFrame {
             }
         });
 
-        label2.setText("10:00");
+        label2.setText(time);
+
+        String[] parts = time.split(":");
+        hours = Integer.parseInt(parts[0]);
+        minutes = Integer.parseInt(parts[1]);
+        seconds = Integer.parseInt(parts[2]);
+        decimalFormat = new DecimalFormat("00");
+        simpleTimer();
+        timer.start();
 
         button2.setLabel("Check");
 
@@ -554,10 +604,24 @@ public class Sudoku extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        GameMenu gameMenuFrame = new GameMenu();
-        gameMenuFrame.setVisible(true);
-        gameMenuFrame.setLocationRelativeTo(null);
-        dispose();
+        timer.stop();
+        try {
+            PreparedStatement preStment = conn.prepareStatement("INSERT INTO GAME VALUES (DEFAULT,?,?,?,?)");
+            time = label2.getText();
+            isDone = "false";
+
+            preStment.setString(1, playerName);
+            preStment.setString(2, difficulty);
+            preStment.setString(3, time);
+            preStment.setString(4, isDone);
+            preStment.executeUpdate();
+            closeConnection(conn);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
+        }
+
+        createGameFrame();
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
@@ -571,9 +635,35 @@ public class Sudoku extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Board is not correct.",  "Check", JOptionPane.ERROR_MESSAGE);
         }
         else {
-            JOptionPane.showMessageDialog(rootPane, "Sudoku!",  "Check", JOptionPane.INFORMATION_MESSAGE);
+            timer.stop();
+            JOptionPane.showMessageDialog(rootPane, "Sudoku!\nTime: " + label2.getText(),  "Check", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                PreparedStatement preStment = conn.prepareStatement("INSERT INTO GAME VALUES (DEFAULT,?,?,?,?)");
+                time = label2.getText();
+                isDone = "true";
+
+                preStment.setString(1, playerName);
+                preStment.setString(2, difficulty);
+                preStment.setString(3, time);
+                preStment.setString(4, isDone);
+                preStment.executeUpdate();
+                closeConnection(conn);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+
+            createGameFrame();
         }
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void createGameFrame(){
+        GameMenu gameMenuFrame = new GameMenu();
+        gameMenuFrame.setVisible(true);
+        gameMenuFrame.setLocationRelativeTo(null);
+        dispose();
+    }
 
     private boolean isInputValid(java.awt.TextField[][] board){
         for (java.awt.TextField[] row : board){
@@ -624,6 +714,83 @@ public class Sudoku extends javax.swing.JFrame {
         return true;
     }
 
+    private void simpleTimer(){
+        timer = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ++seconds;
+                if (seconds == 60){
+                    ++minutes;
+                    seconds = 0;
+                }
+
+                if (minutes == 60){
+                    ++hours;
+                    minutes = 0;
+                }
+
+                dSeconds = decimalFormat.format(seconds);
+                dMinutes = decimalFormat.format(minutes);
+                dHours = decimalFormat.format(hours);
+
+                label2.setText(dHours + ":" + dMinutes + ":" + dSeconds);
+            }
+        });
+    }
+
+    private static boolean isGameTableExist(Connection conn) throws SQLException {
+		try {
+			Statement stment = conn.createStatement();
+			stment.execute("SELECT * FROM GAME");
+            stment.close();
+
+		} catch (SQLException e){
+            String sqlExption = e.getSQLState();
+            if (sqlExption.equals("42X05")){
+                return false;
+            }
+            else if (sqlExption.equals("42X14") || sqlExption.equals("42821")){
+                System.out.println("SQLException:\nIncorrect Table Definition.");
+                throw e;
+            }
+            else {
+                e.printStackTrace();
+                System.out.println("Unhandled SQLException:\n" + e.getMessage());
+                throw e;
+            }
+        }
+
+		return true;
+	}
+
+    private void closeConnection(Connection conn){
+        try {
+            conn.close();
+            System.out.println("CLOSED CONNECTION");
+            if (driver.equals("org.apache.derby.jdbc.EmbeddedDriver")){
+                boolean isShutdown = false;
+                try {
+                    DriverManager.getConnection("jdbc:derby:;shutdown=true");
+                }
+                catch (SQLException e){
+                    if (e.getSQLState().equals("XJ015")){
+                        isShutdown = true;
+                    }
+                }
+                if (!(isShutdown)){
+                    System.out.println("DATABASE DID NOT SHUTDOWN NORMALLY");
+                }
+                else {
+                    System.out.println("DATABASE SHUTDOWN NORMALLY");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
+        }
+        
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -654,7 +821,9 @@ public class Sudoku extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sudoku().setVisible(true);
+                Sudoku sudoku = new Sudoku("User","EASY","00:00:00");
+                sudoku.setVisible(true);
+                sudoku.setLocationRelativeTo(null);
             }
         });
     }
@@ -749,4 +918,12 @@ public class Sudoku extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private java.awt.TextField [][] board;
+    private Timer timer;
+    private int seconds;
+    private int minutes;
+    private int hours;
+    private DecimalFormat decimalFormat;
+    private String dSeconds;
+    private String dMinutes;
+    private String dHours;
 }
