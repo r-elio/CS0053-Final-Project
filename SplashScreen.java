@@ -16,6 +16,7 @@ public class SplashScreen{
         window.setLocationRelativeTo(null);
         window.setVisible(false);
         window.dispose();
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -24,7 +25,6 @@ public class SplashScreen{
         GameMenu gm = new GameMenu();
         gm.setVisible(true);
         gm.setLocationRelativeTo(null);
-    
-    }
 
+    }
 }
