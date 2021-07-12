@@ -120,7 +120,6 @@ public class GameMenu extends javax.swing.JFrame {
 
         pack();
 
-
         setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
 
         addWindowListener(new WindowAdapter(){
@@ -137,6 +136,15 @@ public class GameMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                PlayerName playerName = new PlayerName();
+                playerName.setVisible(true);
+                playerName.setLocationRelativeTo(null);
+                dispose();
+            }
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
