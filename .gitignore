@@ -21,3 +21,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+*.dat
+gameDB/seg0/README_DO_NOT_TOUCH_FILES.txt
+gameDB/service.properties
+*.ctrl
+gameDB/log/README_DO_NOT_TOUCH_FILES.txt
+gameDB/README_DO_NOT_TOUCH_FILES.txt
