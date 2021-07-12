@@ -14,17 +14,18 @@ public class SplashScreen{
         window.setSize(500,500);
         window.setVisible(true);
         window.setLocationRelativeTo(null);
-        window.setVisible(false);
-        window.dispose();
-
+        
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        window.setVisible(false);
+        window.dispose();
         GameMenu gm = new GameMenu();
         gm.setVisible(true);
         gm.setLocationRelativeTo(null);
-
+    
     }
+
 }
