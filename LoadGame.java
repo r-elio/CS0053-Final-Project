@@ -22,6 +22,9 @@ public class LoadGame extends javax.swing.JFrame {
     private static final String dbName = "gameDB";
     private static final String connectionURL = "jdbc:derby:" + dbName + ";create=true";
     private Connection conn;
+    private boolean notEmpty;
+    private String name;
+    private String time;
 
     private final String createGameTable = "CREATE TABLE GAME "
     + "(ID INT GENERATED ALWAYS AS IDENTITY NOT NULL CONSTRAINT ID_PK PRIMARY KEY,"
@@ -69,7 +72,7 @@ public class LoadGame extends javax.swing.JFrame {
     }
   
 
-    public void getRecord(String difficulty) {
+    public boolean getRecord(String difficulty) {
 
         try {
             conn = DriverManager.getConnection(connectionURL);
@@ -90,32 +93,44 @@ public class LoadGame extends javax.swing.JFrame {
 
             ResultSet rst = null;
             PreparedStatement preStment = conn.prepareStatement("SELECT * FROM game WHERE (DIFFICULTY = ?) AND (ISDONE = ?)");
-
+            
             String isDone = "false";
-
+            
+            
             System.out.println("SELECT * FROM game WHERE (DIFFICULTY = ?) AND (ISDONE = ?)");
 
             preStment.setString(1, difficulty);
             preStment.setString(2, isDone);
             rst = preStment.executeQuery();
 
-            rst.next();
-            name = (rst.getString(2));
-            time = (rst.getString(4));
+            if (rst.next() != false) {
+                notEmpty=true;
+                
+              
+                name = (rst.getString(2));
+                time = (rst.getString(4));
+               this.dispose();
+                Sudoku sudokuFrame = new Sudoku(name, "EASY", time);
+                sudokuFrame.setVisible(true);
+                sudokuFrame.setLocationRelativeTo(null);
+            } else {    
+                //System.out.println("ResultSet is empty in Java");
+                JOptionPane.showMessageDialog(rootPane, "No Saved Files", "NOTICE", JOptionPane.WARNING_MESSAGE);
+                notEmpty=false;
+                
+            }
            
-            //System.out.println(name);
-            //System.out.println(time);
+           
+            System.out.println(name);
+            System.out.println(time);
 
         } catch (Exception e) {
             System.out.println("error in get Record");
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        Sudoku sudokuFrame = new Sudoku(name, difficulty, time);
-        sudokuFrame.setVisible(true);
-        sudokuFrame.setLocationRelativeTo(null);
-
-        //createGameFrame();
+        
+        return notEmpty;
     }
     
     private void closeConnection(Connection conn){
@@ -225,8 +240,13 @@ public class LoadGame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         LoadGame loadGame = new LoadGame();
-        loadGame.getRecord("EASY");
-        this.dispose();
+        notEmpty=loadGame.getRecord("EASY");
+        
+        if(notEmpty){         
+             this.dispose();    
+            
+        }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -242,15 +262,21 @@ public class LoadGame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         LoadGame loadGame = new LoadGame();
-        loadGame.getRecord("MEDIUM");
-        this.dispose();
+        notEmpty=loadGame.getRecord("MEDIUM");
+        
+         if(notEmpty){  
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         LoadGame loadGame = new LoadGame();
-        loadGame.getRecord("HARD");
-        this.dispose();
+        notEmpty=loadGame.getRecord("HARD");
+       
+         if(notEmpty){
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
