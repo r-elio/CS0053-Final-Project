@@ -142,6 +142,9 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
                 createSudokuFrame("EASY");
             }
         }
+        else if (title.equals("Rankings")){
+            createRankingsFrame("EASY");
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
@@ -156,6 +159,9 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
             else {
                 createSudokuFrame("MEDIUM");
             }
+        }
+        else if (title.equals("Rankings")){
+            createRankingsFrame("MEDIUM");
         }
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -172,10 +178,19 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
                 createSudokuFrame("HARD");
             }
         }
+        else if (title.equals("Rankings")){
+            createRankingsFrame("HARD");
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        createPlayerNameFrame();
+        if (title.equals("New Game")){
+            createPlayerNameFrame();
+        }
+        else if (title.equals("Rankings")){
+            createGameFrame();
+        }
+        
     }//GEN-LAST:event_button1ActionPerformed
 
     private boolean isSaveDataExists(String difficulty){
@@ -223,6 +238,20 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
         sudokuFrame.setVisible(true);
         sudokuFrame.setLocationRelativeTo(null);
         this.dispose();
+    }
+
+    private void createRankingsFrame(String difficulty){
+        Rankings rankingsFrame = new Rankings(difficulty);
+        rankingsFrame.setVisible(true);
+        rankingsFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
+    private void createGameFrame(){
+        GameMenu gameMenuFrame = new GameMenu();
+        gameMenuFrame.setVisible(true);
+        gameMenuFrame.setLocationRelativeTo(null);
+        dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

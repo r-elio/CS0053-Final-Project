@@ -1,3 +1,7 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,12 +12,16 @@
  *
  * @author Agerico Reyes
  */
-public class Rankings extends javax.swing.JFrame {
+public class Rankings extends javax.swing.JFrame implements GameDB {
+
+    private Connection conn;
+    private String difficulty;
 
     /**
      * Creates new form Rankings
      */
-    public Rankings() {
+    public Rankings(String difficulty) {
+        this.difficulty = difficulty;
         initComponents();
     }
 
@@ -25,7 +33,8 @@ public class Rankings extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        setTitle(difficulty);
+        conn = GameDB.getConnection();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
@@ -39,11 +48,13 @@ public class Rankings extends javax.swing.JFrame {
 
         label1.setText("Rankings");
 
-        label2.setText("Name 1");
+        label2.setText("None");
 
-        label3.setText("Name 3");
+        label3.setText("None");
 
-        label4.setText("Name 2");
+        label4.setText("None");
+
+        queryRankings();
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -121,47 +132,29 @@ public class Rankings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        GameMenu gameMenuFrame = new GameMenu();
-        gameMenuFrame.setVisible(true);
-        gameMenuFrame.setLocationRelativeTo(null);
-        
+        Difficulty difficultyFrame = new Difficulty("Rankings");
+        difficultyFrame.setVisible(true);
+        difficultyFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void queryRankings(){
+        java.awt.Label[] labels = {label2,label4,label3};
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Rankings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Rankings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Rankings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Rankings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            PreparedStatement preStment = conn.prepareStatement("SELECT * FROM GAME WHERE DIFFICULTY = ? AND ISDONE = ? ORDER BY TIME ASC");
+            preStment.setString(1, difficulty);
+            preStment.setString(2, "true");
+            ResultSet rSet = preStment.executeQuery();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Rankings().setVisible(true);
+            for (int i = 0; i < 3 && rSet.next(); ++i){
+                String playerName = rSet.getString(2);
+                String time = rSet.getString(4);
+                labels[i].setText(playerName + " - " + time);
             }
-        });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
