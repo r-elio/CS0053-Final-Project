@@ -47,20 +47,16 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         setTitle(difficulty);
+        
         conn = GameDB.getConnection();
-
         try {
             Statement stment = conn.createStatement();
-
-            if (!(GameDB.isGameTableExist(conn))){
-                System.out.println("CREATING STUDENT TABLE...");
+            if (!GameDB.isGameTableExist(conn)) {
                 stment.execute(GameDB.CREATE_GAME_TABLE);
             }
-
             stment.close();
-
         } catch (Exception e) {
-            //TODO: handle exception
+            e.printStackTrace();
         }
 
         jPanel1 = new javax.swing.JPanel();
@@ -759,43 +755,6 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
                 dHours = decimalFormat.format(hours);
 
                 label2.setText(dHours + ":" + dMinutes + ":" + dSeconds);
-            }
-        });
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sudoku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sudoku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sudoku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sudoku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Sudoku sudoku = new Sudoku("User","EASY","00:00:00");
-                sudoku.setVisible(true);
-                sudoku.setLocationRelativeTo(null);
             }
         });
     }

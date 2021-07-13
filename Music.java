@@ -69,7 +69,7 @@ public class Music extends javax.swing.JFrame  {
             System.out.println("audio is already paused");
             return;
         }
-        this.cf = this.clip.getMicrosecondPosition();
+        this.cf = Music.clip.getMicrosecondPosition();
         clip.stop();
         status = "paused";
     }

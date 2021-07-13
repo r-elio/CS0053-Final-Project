@@ -110,13 +110,7 @@ public class Settings extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) throws UnsupportedAudioFileException, LineUnavailableException, IOException {//GEN-FIRST:event_jCheckBox1ActionPerformed
-//        // TODO add your handling code here:
-//        super.stop();
-//    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         GameMenu gameMenuFrame = new GameMenu();
         gameMenuFrame.setVisible(true);
         gameMenuFrame.setLocationRelativeTo(null);
