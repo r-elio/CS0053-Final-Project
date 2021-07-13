@@ -144,7 +144,6 @@ public class GameMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         LoadGame  loadGameFrame = new LoadGame();
         loadGameFrame.setVisible(true);
         loadGameFrame.setLocationRelativeTo(null);
@@ -152,8 +151,6 @@ public class GameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(ActionEvent evt) throws UnsupportedAudioFileException, LineUnavailableException, IOException {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-
         Settings settingFrame = new Settings();
         settingFrame.setVisible(true);
         settingFrame.setLocationRelativeTo(null);
@@ -162,7 +159,6 @@ public class GameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         Difficulty difficultyFrame = new Difficulty("Rankings");
         difficultyFrame.setVisible(true);
         difficultyFrame.setLocationRelativeTo(null);
@@ -170,7 +166,6 @@ public class GameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         if (evt.getSource() == jButton5){
             int response = JOptionPane.showConfirmDialog(rootPane, "Do you want to exit the program?", "Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION){
@@ -181,7 +176,6 @@ public class GameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         PlayerName newFrame = new PlayerName();
         newFrame.setVisible(true);
         newFrame.setLocationRelativeTo(null);
