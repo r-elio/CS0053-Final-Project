@@ -26,6 +26,8 @@ public class SplashScreen{
     }
     public SplashScreen() {
 
+        Music music = Music.getInstance();
+
         JWindow window = new JWindow();
         window.getContentPane().add(new JLabel("", new ImageIcon(getClass().getResource("logo.png")), 0), SwingConstants.CENTER);
         window.setBounds(500, 150, 300, 200);
@@ -45,8 +47,7 @@ public class SplashScreen{
         gm.setLocationRelativeTo(null);
     
         try{
-            Music music = new Music();
-            music.playMusic();
+            music.play();
         }catch(Exception e){
             e.printStackTrace();
         }
