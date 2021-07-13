@@ -1,6 +1,0 @@
-{
-	"java.project.referencedLibraries": [
-		"lib/**/*.jar",
-		"c:\\db-derby-10.14.2.0-bin\\lib\\derby.jar"
-	]
-}
