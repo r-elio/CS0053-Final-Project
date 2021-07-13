@@ -176,6 +176,11 @@ public class LoadGame extends javax.swing.JFrame {
         label1.setText("Saved Files");
 
         button4.setLabel("Back");
+        button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button4ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Easy Saved Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
