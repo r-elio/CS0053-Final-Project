@@ -1,6 +1,11 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +32,49 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
     private String difficulty;
     private String time;
     private String isDone;
+    private File saveFile;
+
+    private int[][] easyDifficulty = {
+        {2,0,5, 0,0,9, 0,0,4},
+        {0,0,0, 0,0,0, 3,0,7},
+        {7,0,0, 8,5,6, 0,1,0},
+
+        {4,5,0, 7,0,0, 0,0,0},
+        {0,0,9, 0,0,0, 1,0,0},
+        {0,0,0, 0,0,2, 0,8,5},
+
+        {0,2,0, 4,1,8, 0,0,6},
+        {6,0,8, 0,0,0, 0,0,0},
+        {1,0,0, 2,0,0, 7,0,8}
+    };
+
+    private int[][] mediumDifficulty = {
+        {0,0,6, 0,9,0, 2,0,0},
+        {0,0,0, 7,0,2, 0,0,0},
+        {0,9,0, 5,0,8, 0,7,0},
+
+        {9,0,0, 0,3,0, 0,0,6},
+        {7,5,0, 0,0,0, 0,1,9},
+        {1,0,0, 0,4,0, 0,0,5},
+
+        {0,1,0, 3,0,9, 0,8,0},
+        {0,0,0, 2,0,1, 0,0,0},
+        {0,0,9, 0,8,0, 1,0,0}
+    };
+
+    private int[][] hardDifficulty = {
+        {0,0,0, 8,0,0, 0,0,0},
+        {7,8,9, 0,1,0, 0,0,6},
+        {0,0,0, 0,0,6, 1,0,0},
+
+        {0,0,7, 0,0,0, 0,5,0},
+        {5,0,8, 7,0,9, 3,0,4},
+        {0,4,0, 0,0,0, 2,0,0},
+
+        {0,0,3, 2,0,0, 0,0,0},
+        {8,0,0, 0,7,0, 4,3,9},
+        {0,0,0, 0,0,1, 0,0,0}
+    };
 
     /**
      * Creates new form Sudoku
@@ -47,7 +95,7 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         setTitle(difficulty);
-        
+
         conn = GameDB.getConnection();
         try {
             Statement stment = conn.createStatement();
@@ -60,87 +108,87 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
         }
 
         jPanel1 = new javax.swing.JPanel();
-        textField1 = new java.awt.TextField("5");
-        textField2 = new java.awt.TextField("1");
-        textField3 = new java.awt.TextField("9");
-        textField4 = new java.awt.TextField("6");
-        textField5 = new java.awt.TextField("8");
-        textField6 = new java.awt.TextField("4");
-        textField7 = new java.awt.TextField("7");
-        textField8 = new java.awt.TextField("2");
-        textField9 = new java.awt.TextField("3");
-        textField10 = new java.awt.TextField("3");
-        textField11 = new java.awt.TextField("7");
-        textField12 = new java.awt.TextField("9");
-        textField13 = new java.awt.TextField("5");
-        textField14 = new java.awt.TextField("2");
-        textField15 = new java.awt.TextField("1");
-        textField16 = new java.awt.TextField("6");
-        textField17 = new java.awt.TextField("8");
-        textField18 = new java.awt.TextField("4");
-        textField19 = new java.awt.TextField("4");
-        textField20 = new java.awt.TextField("2");
-        textField21 = new java.awt.TextField("8");
-        textField22 = new java.awt.TextField("9");
-        textField23 = new java.awt.TextField("6");
-        textField24 = new java.awt.TextField("3");
-        textField25 = new java.awt.TextField("1");
-        textField26 = new java.awt.TextField("7");
-        textField27 = new java.awt.TextField("5");
-        textField28 = new java.awt.TextField("6");
-        textField29 = new java.awt.TextField("1");
-        textField30 = new java.awt.TextField("3");
-        textField31 = new java.awt.TextField("7");
-        textField32 = new java.awt.TextField("8");
-        textField33 = new java.awt.TextField("9");
-        textField34 = new java.awt.TextField("5");
-        textField35 = new java.awt.TextField("4");
-        textField36 = new java.awt.TextField("2");
-        textField37 = new java.awt.TextField("7");
-        textField38 = new java.awt.TextField("9");
-        textField39 = new java.awt.TextField("4");
-        textField40 = new java.awt.TextField("6");
-        textField41 = new java.awt.TextField("5");
-        textField42 = new java.awt.TextField("2");
-        textField43 = new java.awt.TextField("3");
-        textField44 = new java.awt.TextField("1");
-        textField45 = new java.awt.TextField("8");
-        textField46 = new java.awt.TextField("5");
-        textField47 = new java.awt.TextField("2");
-        textField48 = new java.awt.TextField("1");
-        textField49 = new java.awt.TextField("3");
-        textField50 = new java.awt.TextField("8");
-        textField51 = new java.awt.TextField("4");
-        textField52 = new java.awt.TextField("7");
-        textField53 = new java.awt.TextField("9");
-        textField54 = new java.awt.TextField("6");
-        textField55 = new java.awt.TextField("3");
-        textField56 = new java.awt.TextField("5");
-        textField57 = new java.awt.TextField("4");
-        textField58 = new java.awt.TextField("7");
-        textField59 = new java.awt.TextField("9");
-        textField60 = new java.awt.TextField("8");
-        textField61 = new java.awt.TextField("2");
-        textField62 = new java.awt.TextField("6");
-        textField63 = new java.awt.TextField("1");
-        textField64 = new java.awt.TextField("4");
-        textField65 = new java.awt.TextField("6");
-        textField66 = new java.awt.TextField("2");
-        textField67 = new java.awt.TextField("9");
-        textField68 = new java.awt.TextField("1");
-        textField69 = new java.awt.TextField("5");
-        textField70 = new java.awt.TextField("8");
-        textField71 = new java.awt.TextField("3");
-        textField72 = new java.awt.TextField("7");
-        textField73 = new java.awt.TextField("8");
-        textField74 = new java.awt.TextField("7");
-        textField75 = new java.awt.TextField("3");
-        textField76 = new java.awt.TextField("1");
-        textField77 = new java.awt.TextField("2");
-        textField78 = new java.awt.TextField("6");
-        textField79 = new java.awt.TextField("4");
-        textField80 = new java.awt.TextField("5");
-        textField81 = new java.awt.TextField("9");
+        textField1 = new java.awt.TextField();
+        textField2 = new java.awt.TextField();
+        textField3 = new java.awt.TextField();
+        textField4 = new java.awt.TextField();
+        textField5 = new java.awt.TextField();
+        textField6 = new java.awt.TextField();
+        textField7 = new java.awt.TextField();
+        textField8 = new java.awt.TextField();
+        textField9 = new java.awt.TextField();
+        textField10 = new java.awt.TextField();
+        textField11 = new java.awt.TextField();
+        textField12 = new java.awt.TextField();
+        textField13 = new java.awt.TextField();
+        textField14 = new java.awt.TextField();
+        textField15 = new java.awt.TextField();
+        textField16 = new java.awt.TextField();
+        textField17 = new java.awt.TextField();
+        textField18 = new java.awt.TextField();
+        textField19 = new java.awt.TextField();
+        textField20 = new java.awt.TextField();
+        textField21 = new java.awt.TextField();
+        textField22 = new java.awt.TextField();
+        textField23 = new java.awt.TextField();
+        textField24 = new java.awt.TextField();
+        textField25 = new java.awt.TextField();
+        textField26 = new java.awt.TextField();
+        textField27 = new java.awt.TextField();
+        textField28 = new java.awt.TextField();
+        textField29 = new java.awt.TextField();
+        textField30 = new java.awt.TextField();
+        textField31 = new java.awt.TextField();
+        textField32 = new java.awt.TextField();
+        textField33 = new java.awt.TextField();
+        textField34 = new java.awt.TextField();
+        textField35 = new java.awt.TextField();
+        textField36 = new java.awt.TextField();
+        textField37 = new java.awt.TextField();
+        textField38 = new java.awt.TextField();
+        textField39 = new java.awt.TextField();
+        textField40 = new java.awt.TextField();
+        textField41 = new java.awt.TextField();
+        textField42 = new java.awt.TextField();
+        textField43 = new java.awt.TextField();
+        textField44 = new java.awt.TextField();
+        textField45 = new java.awt.TextField();
+        textField46 = new java.awt.TextField();
+        textField47 = new java.awt.TextField();
+        textField48 = new java.awt.TextField();
+        textField49 = new java.awt.TextField();
+        textField50 = new java.awt.TextField();
+        textField51 = new java.awt.TextField();
+        textField52 = new java.awt.TextField();
+        textField53 = new java.awt.TextField();
+        textField54 = new java.awt.TextField();
+        textField55 = new java.awt.TextField();
+        textField56 = new java.awt.TextField();
+        textField57 = new java.awt.TextField();
+        textField58 = new java.awt.TextField();
+        textField59 = new java.awt.TextField();
+        textField60 = new java.awt.TextField();
+        textField61 = new java.awt.TextField();
+        textField62 = new java.awt.TextField();
+        textField63 = new java.awt.TextField();
+        textField64 = new java.awt.TextField();
+        textField65 = new java.awt.TextField();
+        textField66 = new java.awt.TextField();
+        textField67 = new java.awt.TextField();
+        textField68 = new java.awt.TextField();
+        textField69 = new java.awt.TextField();
+        textField70 = new java.awt.TextField();
+        textField71 = new java.awt.TextField();
+        textField72 = new java.awt.TextField();
+        textField73 = new java.awt.TextField();
+        textField74 = new java.awt.TextField();
+        textField75 = new java.awt.TextField();
+        textField76 = new java.awt.TextField();
+        textField77 = new java.awt.TextField();
+        textField78 = new java.awt.TextField();
+        textField79 = new java.awt.TextField();
+        textField80 = new java.awt.TextField();
+        textField81 = new java.awt.TextField();
 
         board = new java.awt.TextField[][]{
             {textField1,textField10,textField19,    textField28,textField37,textField50,    textField59,textField68,textField77},
@@ -160,6 +208,35 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
             for (java.awt.TextField field : row){
                 field.setFont(new Font("Arial",Font.BOLD,22));
             }
+        }
+
+        int[][] sudokuPuzzle;
+        if (difficulty.equals("EASY")){
+            sudokuPuzzle = easyDifficulty;
+        }
+        else if (difficulty.equals("MEDIUM")){
+            sudokuPuzzle = mediumDifficulty;
+        }
+        else if (difficulty.equals("HARD")){
+            sudokuPuzzle = hardDifficulty;
+        }
+        else {
+            sudokuPuzzle = null;
+        }
+
+        for (int i = 0; i < sudokuPuzzle.length; ++i){
+            for (int j = 0; j < sudokuPuzzle[i].length; ++j){
+                if (sudokuPuzzle[i][j] != 0) {
+                    board[i][j].setText(String.valueOf(sudokuPuzzle[i][j]));
+                    board[i][j].setEditable(false);
+                    board[i][j].setFocusable(false);
+                }
+            }
+        }
+
+        saveFile = new File(difficulty + ".save");
+        if (saveFile.exists()){
+            loadData();
         }
 
         label1 = new java.awt.Label();
@@ -623,12 +700,16 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
         }
-
+        saveData();
         createGameFrame();
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        if (!isInputValid(board)){
+        if (isInputBlank(board)){
+            JOptionPane.showMessageDialog(rootPane, "All field must be filled.",  "Blank Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if (!isInputValid(board)){
             JOptionPane.showMessageDialog(rootPane, "Input must be in a range of 1 - 9.",  "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -670,6 +751,8 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
 
                 selectStment.close();
 
+                saveFile.delete();
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
@@ -679,11 +762,53 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
         }
     }//GEN-LAST:event_button1ActionPerformed
 
+    private void saveData(){
+        try {
+            FileOutputStream fos = new FileOutputStream(difficulty + ".save");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(board);
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadData(){
+        try {
+            FileInputStream fis = new FileInputStream(difficulty + ".save");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            java.awt.TextField[][] boardState = (java.awt.TextField[][]) ois.readObject();
+            ois.close();
+
+            for (int i = 0; i < board.length; ++i){
+                for (int j = 0; j < board[i].length; ++j){
+                    board[i][j].setText(boardState[i][j].getText());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+
     private void createGameFrame(){
         GameMenu gameMenuFrame = new GameMenu();
         gameMenuFrame.setVisible(true);
         gameMenuFrame.setLocationRelativeTo(null);
         dispose();
+    }
+
+    private boolean isInputBlank(java.awt.TextField[][] board){
+        for (java.awt.TextField[] row : board){
+            for (java.awt.TextField field : row){
+                String text = field.getText();
+                if (text.isBlank()){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean isInputValid(java.awt.TextField[][] board){
