@@ -5,6 +5,9 @@
  */
 
 
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,7 +38,7 @@ public class Settings extends javax.swing.JFrame{
     private void initComponents() {
 
         jCheckBox = new javax.swing.JCheckBox();
-        jSlider1 = new javax.swing.JSlider();
+        jSlider1 = new JSlider(-60,6,-6);
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -43,14 +46,26 @@ public class Settings extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Settings");
 
+        String status = music.getStatus();
+
+        if(status.equals("default")){
+            jCheckBox.setSelected(false);
+        }else if(status.equals("playing")){
+            jCheckBox.setSelected(true);
+        }else{
+            jCheckBox.setSelected(false);
+        }
+
         jCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(jCheckBox.isSelected()){
-                    music.pause();
-                }else{
                     music.play();
+                }else{
+                    music.pause();
                 }
+
+
             }
         });
 
@@ -60,6 +75,13 @@ public class Settings extends javax.swing.JFrame{
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jSlider1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                music.changeVolume(jSlider1.getValue());
             }
         });
 
@@ -121,11 +143,6 @@ public class Settings extends javax.swing.JFrame{
     /**
      * @param args the command line arguments
      */
-
-
-
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

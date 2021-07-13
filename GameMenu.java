@@ -229,7 +229,6 @@ public class GameMenu extends javax.swing.JFrame {
                     e.printStackTrace();
                 }
 
-
                 //Open Frame
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.setVisible(true);

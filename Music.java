@@ -16,7 +16,7 @@ public class Music extends javax.swing.JFrame  {
     Long cf;
     static Clip clip;
     static Music musicPlayer;
-    String status;
+    String status = "default";
 
     static {
         try {
@@ -37,6 +37,8 @@ public class Music extends javax.swing.JFrame  {
         return musicPlayer;
     }
 
+
+
     // constructor to initialize streams and clip
     public Music()
             throws UnsupportedAudioFileException,
@@ -51,27 +53,37 @@ public class Music extends javax.swing.JFrame  {
         clip.open(audioInputStream);
 
         clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-5);
+
     }
 
     // Work as the user enters his choice
-    
 
     // Method to play the audio
     public void play() {
         //start the clip
         clip.start();
-        status = "play";
+        status = "playing";
     }
 
     // Method to pause the audio
     public void pause() {
-        if (status.equals("paused")) {
-            System.out.println("audio is already paused");
-            return;
-        }
+
         this.cf = Music.clip.getMicrosecondPosition();
         clip.stop();
         status = "paused";
+    }
+
+    public void changeVolume(int volume){
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue( (float) volume);
+        System.out.println(gainControl.getValue());
+    }
+
+    public String getStatus(){
+        return status;
     }
 
 
