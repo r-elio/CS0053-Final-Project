@@ -2,9 +2,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.HashSet;
@@ -19,21 +18,11 @@ import javax.swing.*;
 /**
  *
  * @author Agerico Reyes
+ * @author Rajan Elio
+ * 
  */
-public class Sudoku extends javax.swing.JFrame {
-
-    private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static final String dbName = "gameDB";
-    private static final String connectionURL = "jdbc:derby:" + dbName + ";create=true";
+public class Sudoku extends javax.swing.JFrame implements GameDB {
     private Connection conn;
-
-    private final String createGameTable = "CREATE TABLE GAME "
-    + "(ID INT GENERATED ALWAYS AS IDENTITY NOT NULL CONSTRAINT ID_PK PRIMARY KEY,"
-    + " NAME VARCHAR(20) NOT NULL,"
-    + " DIFFICULTY VARCHAR(20) NOT NULL,"
-    + " TIME TIME NOT NULL,"
-    + " ISDONE BOOLEAN NOT NULL)";
-
     private String playerName;
     private String difficulty;
     private String time;
@@ -58,6 +47,22 @@ public class Sudoku extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         setTitle(difficulty);
+        conn = GameDB.getConnection();
+
+        try {
+            Statement stment = conn.createStatement();
+
+            if (!(GameDB.isGameTableExist(conn))){
+                System.out.println("CREATING STUDENT TABLE...");
+                stment.execute(GameDB.CREATE_GAME_TABLE);
+            }
+
+            stment.close();
+
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+
         jPanel1 = new javax.swing.JPanel();
         textField1 = new java.awt.TextField("5");
         textField2 = new java.awt.TextField("1");
@@ -523,20 +528,6 @@ public class Sudoku extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        try {
-            conn = DriverManager.getConnection(connectionURL);
-            System.out.println("CONNECTED TO DATABASE: " + dbName);
-            Statement stment = conn.createStatement();
-            if (!isGameTableExist(conn)){
-                System.out.println("CREATING GAME TABLE...");
-                stment.execute(createGameTable);
-            }
-            stment.close();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
-        }
-
         label1.setText("Timer");
 
         button1.setLabel("Back");
@@ -603,19 +594,35 @@ public class Sudoku extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
         timer.stop();
+        time = label2.getText();
+        isDone = "false";
         try {
-            PreparedStatement preStment = conn.prepareStatement("INSERT INTO GAME VALUES (DEFAULT,?,?,?,?)");
-            time = label2.getText();
-            isDone = "false";
+            PreparedStatement selectStment = conn.prepareStatement("SELECT * FROM GAME WHERE DIFFICULTY = ? AND ISDONE = ?");
+            selectStment.setString(1, difficulty);
+            selectStment.setString(2, isDone);
+            ResultSet rSet = selectStment.executeQuery();
+            if (rSet.next()){
+                PreparedStatement updateStment = conn.prepareStatement("UPDATE GAME SET TIME = ? WHERE DIFFICULTY = ? AND ISDONE = ?");
+                updateStment.setString(1, time);
+                updateStment.setString(2, difficulty);
+                updateStment.setString(3, isDone);
+                updateStment.executeUpdate();
+                updateStment.close();
+            }
+            else {
+                PreparedStatement insertStment = conn.prepareStatement("INSERT INTO GAME VALUES (DEFAULT,?,?,?,?)");
+                insertStment.setString(1, playerName);
+                insertStment.setString(2, difficulty);
+                insertStment.setString(3, time);
+                insertStment.setString(4, isDone);
+                insertStment.executeUpdate();
+                insertStment.close();
+            }
 
-            preStment.setString(1, playerName);
-            preStment.setString(2, difficulty);
-            preStment.setString(3, time);
-            preStment.setString(4, isDone);
-            preStment.executeUpdate();
-            closeConnection(conn);
+            rSet.close();
+
+            selectStment.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
@@ -625,7 +632,6 @@ public class Sudoku extends javax.swing.JFrame {
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
         if (!isInputValid(board)){
             JOptionPane.showMessageDialog(rootPane, "Input must be in a range of 1 - 9.",  "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
@@ -638,16 +644,35 @@ public class Sudoku extends javax.swing.JFrame {
             timer.stop();
             JOptionPane.showMessageDialog(rootPane, "Sudoku!\nTime: " + label2.getText(),  "Check", JOptionPane.INFORMATION_MESSAGE);
             try {
-                PreparedStatement preStment = conn.prepareStatement("INSERT INTO GAME VALUES (DEFAULT,?,?,?,?)");
-                time = label2.getText();
-                isDone = "true";
+                PreparedStatement selectStment = conn.prepareStatement("SELECT * FROM GAME WHERE DIFFICULTY = ? AND ISDONE = ?");
+                selectStment.setString(1, difficulty);
+                selectStment.setString(2, "false");
+                ResultSet rSet = selectStment.executeQuery();
 
-                preStment.setString(1, playerName);
-                preStment.setString(2, difficulty);
-                preStment.setString(3, time);
-                preStment.setString(4, isDone);
-                preStment.executeUpdate();
-                closeConnection(conn);
+                time = label2.getText();
+
+                if (rSet.next()){
+                    PreparedStatement updateStment = conn.prepareStatement("UPDATE GAME SET TIME = ?, ISDONE = ? WHERE DIFFICULTY = ? AND ISDONE = ?");
+                    updateStment.setString(1, time);
+                    updateStment.setString(2, "true");
+                    updateStment.setString(3, difficulty);
+                    updateStment.setString(4, "false");
+                    updateStment.executeUpdate();
+                    updateStment.close();
+                }
+                else {
+                    PreparedStatement insertStment = conn.prepareStatement("INSERT INTO GAME VALUES (DEFAULT,?,?,?,?)");
+                    insertStment.setString(1, playerName);
+                    insertStment.setString(2, difficulty);
+                    insertStment.setString(3, time);
+                    insertStment.setString(4, "true");
+                    insertStment.executeUpdate();
+                    insertStment.close();
+                }
+
+                rSet.close();
+
+                selectStment.close();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
@@ -736,59 +761,6 @@ public class Sudoku extends javax.swing.JFrame {
                 label2.setText(dHours + ":" + dMinutes + ":" + dSeconds);
             }
         });
-    }
-
-    private static boolean isGameTableExist(Connection conn) throws SQLException {
-		try {
-			Statement stment = conn.createStatement();
-			stment.execute("SELECT * FROM GAME");
-            stment.close();
-
-		} catch (SQLException e){
-            String sqlExption = e.getSQLState();
-            if (sqlExption.equals("42X05")){
-                return false;
-            }
-            else if (sqlExption.equals("42X14") || sqlExption.equals("42821")){
-                System.out.println("SQLException:\nIncorrect Table Definition.");
-                throw e;
-            }
-            else {
-                e.printStackTrace();
-                System.out.println("Unhandled SQLException:\n" + e.getMessage());
-                throw e;
-            }
-        }
-
-		return true;
-	}
-
-    private void closeConnection(Connection conn){
-        try {
-            conn.close();
-            System.out.println("CLOSED CONNECTION");
-            if (driver.equals("org.apache.derby.jdbc.EmbeddedDriver")){
-                boolean isShutdown = false;
-                try {
-                    DriverManager.getConnection("jdbc:derby:;shutdown=true");
-                }
-                catch (SQLException e){
-                    if (e.getSQLState().equals("XJ015")){
-                        isShutdown = true;
-                    }
-                }
-                if (!(isShutdown)){
-                    System.out.println("DATABASE DID NOT SHUTDOWN NORMALLY");
-                }
-                else {
-                    System.out.println("DATABASE SHUTDOWN NORMALLY");
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
-        }
-        
-
     }
 
     /**

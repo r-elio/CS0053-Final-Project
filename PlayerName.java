@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,10 +11,17 @@
  */
 public class PlayerName extends javax.swing.JFrame {
 
+    private String playerName = "";
+
     /**
      * Creates new form PlayerName
      */
     public PlayerName() {
+        initComponents();
+    }
+
+    public PlayerName(String playerName){
+        this.playerName = playerName;
         initComponents();
     }
     
@@ -21,7 +29,13 @@ public class PlayerName extends javax.swing.JFrame {
         GameMenu gameMenuFrame = new GameMenu();
         gameMenuFrame.setVisible(true);
         gameMenuFrame.setLocationRelativeTo(null);
-        
+        this.dispose();
+    }
+
+    private void createDifficultyFrame(String playerName){
+        Difficulty difficultyFrame = new Difficulty("New Game",playerName);
+        difficultyFrame.setVisible(true);
+        difficultyFrame.setLocationRelativeTo(null);
         this.dispose();
     }
 
@@ -58,6 +72,8 @@ public class PlayerName extends javax.swing.JFrame {
             }
         });
 
+        textField1.setText(playerName);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,13 +108,18 @@ public class PlayerName extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         createGameMenuFrame();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        createGameMenuFrame();
+        if (textField1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Player Name is required.", "Blank Name", JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            playerName = textField1.getText();
+            createDifficultyFrame(playerName);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

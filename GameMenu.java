@@ -163,10 +163,9 @@ public class GameMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Rankings rankingFrame = new Rankings();
-        rankingFrame.setVisible(true);
-        rankingFrame.setLocationRelativeTo(null);
-        
+        Difficulty difficultyFrame = new Difficulty("Rankings");
+        difficultyFrame.setVisible(true);
+        difficultyFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
