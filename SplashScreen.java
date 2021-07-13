@@ -5,9 +5,27 @@ import javax.swing.SwingConstants;
 
 public class SplashScreen{ 
     public static void main(String[] args) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Difficulty.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Difficulty.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Difficulty.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Difficulty.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
         new SplashScreen();
     }
     public SplashScreen() {
+
         JWindow window = new JWindow();
         window.getContentPane().add(new JLabel("", new ImageIcon(getClass().getResource("logo.png")), 0), SwingConstants.CENTER);
         window.setBounds(500, 150, 300, 200);
@@ -26,6 +44,12 @@ public class SplashScreen{
         gm.setVisible(true);
         gm.setLocationRelativeTo(null);
     
+        try{
+            Music music = new Music();
+            music.playMusic();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

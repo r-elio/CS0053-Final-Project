@@ -5,11 +5,7 @@
  */
 
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 
 
@@ -30,11 +26,7 @@ public class GameMenu extends javax.swing.JFrame {
      */
     public GameMenu() {
         initComponents();
-
-        Music.getInstance();
     }
-
-    static Music music = Music.getInstance();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +36,6 @@ public class GameMenu extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
 
         label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
@@ -74,15 +65,7 @@ public class GameMenu extends javax.swing.JFrame {
         jButton3.setText("Settings");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    jButton3ActionPerformed(evt);
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -151,9 +134,8 @@ public class GameMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(ActionEvent evt) throws UnsupportedAudioFileException, LineUnavailableException, IOException {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-
         Settings settingFrame = new Settings();
         settingFrame.setVisible(true);
         settingFrame.setLocationRelativeTo(null);
@@ -186,20 +168,15 @@ public class GameMenu extends javax.swing.JFrame {
         PlayerName newFrame = new PlayerName();
         newFrame.setVisible(true);
         newFrame.setLocationRelativeTo(null);
-
+         
         this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-
-
-
-
     /**
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
                        
         /* Set the Nimbus look and feel */
@@ -231,24 +208,20 @@ public class GameMenu extends javax.swing.JFrame {
             public void run() {
                 //Play Music
                 try{
-                    music.play();
-                }catch (Exception e){
+                    Music music = new Music();
+                    music.playMusic();
+                }catch(Exception e){
                     e.printStackTrace();
                 }
-
-
+                
                 //Open Frame
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.setVisible(true);
                 gameMenu.setLocationRelativeTo(null);
-
-
             }
         });
         
     }
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -257,6 +230,5 @@ public class GameMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private java.awt.Label label1;
-
     // End of variables declaration//GEN-END:variables
 }
