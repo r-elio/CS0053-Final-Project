@@ -36,7 +36,7 @@ public class GameMenu extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        setTitle("Apophenia");
         label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -206,14 +206,6 @@ public class GameMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //Play Music
-                try{
-                    Music music = new Music();
-                    music.playMusic();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-                
                 //Open Frame
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.setVisible(true);

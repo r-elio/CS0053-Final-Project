@@ -8,8 +8,6 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -26,7 +24,7 @@ public class Music {
     String status;
 
     AudioInputStream audioInputStream;
-    static String filePath = "C:\\Users\\Gela Egana\\Documents\\NetBeansProjects\\CS0053-Final-Project\\JavaFXApplication1\\bg1.wav";
+    static String filePath = "E:\\RAJAN\\Programming\\Java\\Projects\\CS0053-Final-Project\\bg1.wav";
 
     // constructor to initialize streams and clip
     public Music()
