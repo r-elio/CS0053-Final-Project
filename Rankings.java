@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,7 +35,18 @@ public class Rankings extends javax.swing.JFrame implements GameDB {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         setTitle(difficulty);
+
         conn = GameDB.getConnection();
+        try {
+            Statement stment = conn.createStatement();
+            if (!GameDB.isGameTableExist(conn)) {
+                stment.execute(GameDB.CREATE_GAME_TABLE);
+            }
+            stment.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
