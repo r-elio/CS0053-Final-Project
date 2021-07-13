@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -233,6 +234,10 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
             preStment.setString(1, difficulty);
             preStment.setString(2, "false");
             preStment.executeUpdate();
+
+            File saveFile = new File(difficulty + ".save");
+            saveFile.delete();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

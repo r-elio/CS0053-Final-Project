@@ -45,9 +45,6 @@ public class LoadGame extends javax.swing.JFrame implements GameDB {
             PreparedStatement preStment = conn.prepareStatement("SELECT * FROM game WHERE (DIFFICULTY = ?) AND (ISDONE = ?)");
             
             String isDone = "false";
-            
-            
-            System.out.println("SELECT * FROM game WHERE (DIFFICULTY = ?) AND (ISDONE = ?)");
 
             preStment.setString(1, difficulty);
             preStment.setString(2, isDone);
@@ -64,20 +61,13 @@ public class LoadGame extends javax.swing.JFrame implements GameDB {
                 sudokuFrame.setVisible(true);
                 sudokuFrame.setLocationRelativeTo(null);
             } else {    
-                //System.out.println("ResultSet is empty in Java");
                 JOptionPane.showMessageDialog(rootPane, "No Saved Files", "NOTICE", JOptionPane.WARNING_MESSAGE);
                 notEmpty=false;
                 
             }
-           
-           
-            System.out.println(name);
-            System.out.println(time);
 
         } catch (Exception e) {
-            System.out.println("error in get Record");
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
         
         return notEmpty;

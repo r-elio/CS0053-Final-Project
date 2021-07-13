@@ -1,3 +1,5 @@
+import java.sql.Connection;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
@@ -20,6 +22,17 @@ public class SplashScreen{
             java.util.logging.Logger.getLogger(Difficulty.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Difficulty.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        Connection conn = GameDB.getConnection();
+        try {
+            Statement stment = conn.createStatement();
+            if (!GameDB.isGameTableExist(conn)) {
+                stment.execute(GameDB.CREATE_GAME_TABLE);
+            }
+            stment.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         new SplashScreen();
