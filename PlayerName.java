@@ -115,7 +115,7 @@ public class PlayerName extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (textField1.getText().isBlank()){
+        if (textField1.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Player Name is required.", "Blank Name", JOptionPane.WARNING_MESSAGE);
         }
         else {
