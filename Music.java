@@ -10,6 +10,11 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ *
+ * @author James De Leon
+ * 
+ */
 public class Music extends javax.swing.JFrame  {
 
     // to store current position

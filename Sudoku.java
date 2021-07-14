@@ -704,7 +704,7 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
         createGameFrame();
     }//GEN-LAST:event_button1ActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         if (isInputBlank(board)){
             JOptionPane.showMessageDialog(rootPane, "All field must be filled.",  "Blank Input", JOptionPane.ERROR_MESSAGE);
             return;
@@ -760,7 +760,7 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
 
             createGameFrame();
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_button2ActionPerformed
 
     private void saveData(){
         try {

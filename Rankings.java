@@ -12,6 +12,8 @@ import java.sql.Statement;
 /**
  *
  * @author Agerico Reyes
+ * @author Rajan Elio
+ * 
  */
 public class Rankings extends javax.swing.JFrame implements GameDB {
 

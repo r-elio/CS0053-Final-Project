@@ -3,6 +3,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ *
+ * @author Rajan Elio
+ * 
+ */
 public interface GameDB {
 	public static final String DATABASE_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 	public static final String DATABASE_NAME = "gameDB";
