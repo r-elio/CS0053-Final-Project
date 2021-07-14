@@ -7,6 +7,8 @@
 // file using Clip Object
 
 import javax.sound.sampled.*;
+
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -49,7 +51,8 @@ public class Music extends javax.swing.JFrame  {
             throws UnsupportedAudioFileException,
             IOException, LineUnavailableException {
         // create AudioInputStream object
-        audioInputStream = AudioSystem.getAudioInputStream(is);
+        InputStream bInputStream = new BufferedInputStream(is);
+        audioInputStream = AudioSystem.getAudioInputStream(bInputStream);
 
         // create clip reference
         clip = AudioSystem.getClip();
@@ -84,7 +87,6 @@ public class Music extends javax.swing.JFrame  {
     public void changeVolume(int volume){
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue( (float) volume);
-        System.out.println(gainControl.getValue());
     }
 
     public String getStatus(){
