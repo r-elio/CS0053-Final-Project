@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -14,6 +13,8 @@ import java.awt.event.ActionListener;
 /**
  *
  * @author Agerico Reyes
+ * @author James De Leon
+ * 
  */
 public class Settings extends javax.swing.JFrame{
 

@@ -1,10 +1,8 @@
-
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
 
 /*
@@ -160,7 +158,7 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
         }
     }//GEN-LAST:event_button1ActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         if (title.equals("New Game")){
             if (isSaveDataExists("MEDIUM")){
                 int response = JOptionPane.showConfirmDialog(rootPane, "There is existing save data. Would you like to overwrite it?", "Existing Save Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -176,9 +174,9 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
         else if (title.equals("Rankings")){
             createRankingsFrame("MEDIUM");
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_button2ActionPerformed
 
-    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         if (title.equals("New Game")){
             if (isSaveDataExists("HARD")){
                 int response = JOptionPane.showConfirmDialog(rootPane, "There is existing save data. Would you like to overwrite it?", "Existing Save Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -194,9 +192,9 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
         else if (title.equals("Rankings")){
             createRankingsFrame("HARD");
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_button3ActionPerformed
 
-    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
         if (title.equals("New Game")){
             createPlayerNameFrame();
         }
@@ -204,7 +202,7 @@ public class Difficulty extends javax.swing.JFrame implements GameDB {
             createGameFrame();
         }
         
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_button4ActionPerformed
 
     private boolean isSaveDataExists(String difficulty){
         boolean isResult = true;
