@@ -803,7 +803,7 @@ public class Sudoku extends javax.swing.JFrame implements GameDB {
         for (java.awt.TextField[] row : board){
             for (java.awt.TextField field : row){
                 String text = field.getText();
-                if (text.isBlank()){
+                if (text.isEmpty()){
                     return true;
                 }
             }
